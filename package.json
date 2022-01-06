@@ -1,4 +1,4 @@
-{
+  {
   "name": "infinite-react-carousel",
   "version": "1.2.11",
   "description": "Infinite carousel for react",
@@ -22,10 +22,16 @@
     "test:watch": "jest --watch"
   },
   "author": "Hans wu",
-  "license": "MIT",
+    "contributors": [{
+      "name": "Hans wu"
+    },{
+      "name": "Pascu Adrian",
+      "email": "me.adi.hf@gmail.com"
+    }],
+    "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/g787543/infinite-react-carousel"
+    "url": "https://github.com/deepstash/infinite-react-carousel"
   },
   "keywords": [
     "carousel",
@@ -110,7 +116,7 @@
     "coverageDirectory": "./coverage/",
     "collectCoverage": true
   },
-  "npmName": "infinite-react-carousel",
+  "npmName": "@deepstash/infinite-react-carousel",
   "npmFileMap": [
     {
       "basePath": "/dist/",
@@ -119,9 +125,6 @@
       ]
     }
   ],
-  "bugs": {
-    "url": "https://github.com/g787543/infinite-react-carousel/issues"
-  },
-  "homepage": "https://github.com/g787543/infinite-react-carousel"
+  "homepage": "https://github.com/deepstash/infinite-react-carousel"
 }
 
