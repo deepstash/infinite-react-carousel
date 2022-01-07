@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import throttle from 'lodash/throttle';
 import each from 'lodash/each';
 import get from 'lodash/get';
@@ -6,22 +6,22 @@ import isEqual from 'lodash/isEqual';
 import classNames from 'classnames';
 import ResizeObserver from 'resize-observer-polyfill';
 import CircularArray from './array';
-import { defaultProps, propTypes } from './types';
-import { PrevArrow, NextArrow } from './arrows';
+import {defaultProps, propTypes} from './types';
+import {NextArrow, PrevArrow} from './arrows';
 import Dots from './dots';
 import {
-  signupListener,
-  removeListener,
-  handleCarouselTap,
   handleAutoplayPause,
   handleCarouselDrag,
   handleCarouselRelease,
+  handleCarouselTap,
   handleClick,
   handleKeyDown,
   handleResize,
   handleResizeHeight,
-  handleWheel,
   handleVisibilityChange,
+  handleWheel,
+  removeListener,
+  signupListener,
 } from './listener';
 
 const extractObject = (spec, keys) => {
@@ -99,11 +99,14 @@ class Slider extends Component {
     this.handleKeyDown = handleKeyDown.bind(this);
     this.handleClick = handleClick.bind(this);
     this.handleWheel = handleWheel.bind(this);
+    // Init the slide elements
+    this.init();
   }
 
   componentDidMount() {
     this.isMounted = true;
     window.addEventListener('resize', this.handleResize);
+    // Re-init the slide elements now that the component is mounted and we definetelly have access to the window width
     this.init();
     const { onInit } = this.props;
     if (onInit && typeof onInit === 'function') onInit(this);
@@ -157,9 +160,12 @@ class Slider extends Component {
     }
     let { children } = this.props;
     children = React.Children.toArray(children).filter((child) => (typeof child === 'string' ? !!child.trim() : !!child));
-    const newWith = this.widthInit();
-    if (width !== newWith) {
-      width = newWith;
+    if (typeof window !== 'undefined') {
+      const newWith = this.widthInit();
+
+      if (width !== newWith) {
+        width = newWith;
+      }
     }
     const newChildren = [];
     for (
